@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29503.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "THSROrderBot", "THSROrderBot\THSROrderBot.csproj", "{8D94F326-79AD-4C2D-922E-2277F42E0F34}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utility", "Utility\Utility.csproj", "{BF61807D-BA58-4D25-918A-9F5D004D7ABA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{C7F5C747-ED12-45A3-A3DE-6FD11682CE5B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8D94F326-79AD-4C2D-922E-2277F42E0F34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D94F326-79AD-4C2D-922E-2277F42E0F34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D94F326-79AD-4C2D-922E-2277F42E0F34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D94F326-79AD-4C2D-922E-2277F42E0F34}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF61807D-BA58-4D25-918A-9F5D004D7ABA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF61807D-BA58-4D25-918A-9F5D004D7ABA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF61807D-BA58-4D25-918A-9F5D004D7ABA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF61807D-BA58-4D25-918A-9F5D004D7ABA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7F5C747-ED12-45A3-A3DE-6FD11682CE5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7F5C747-ED12-45A3-A3DE-6FD11682CE5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7F5C747-ED12-45A3-A3DE-6FD11682CE5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7F5C747-ED12-45A3-A3DE-6FD11682CE5B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6500FCD5-4257-40E3-9098-93D63E391524}
+	EndGlobalSection
+EndGlobal
