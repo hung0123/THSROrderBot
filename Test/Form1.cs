@@ -14,6 +14,7 @@ namespace Test
 {
     public partial class Form1 : Form
     {
+        private string code = "";
         public Form1()
         {
             InitializeComponent();
@@ -23,7 +24,6 @@ namespace Test
         {
             Graphics g = e.Graphics;
             Captcha c = new Captcha();
-            string code = c.GenCode(5);
             var image = c.GenCaptcha(code);
             Bitmap bmp;
             using (MemoryStream stream = new MemoryStream(image))
@@ -35,16 +35,17 @@ namespace Test
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Graphics g = pictureBox1.CreateGraphics();
             Captcha c = new Captcha();
-            string code = c.GenCode(5);
-            var image = c.GenCaptcha(code);
-            Bitmap bmp;
-            using (MemoryStream stream = new MemoryStream(image))
-            {
-                bmp = new Bitmap(stream);
-            }
-            g.DrawImage(bmp, new PointF(0, 0));
+            code = c.GenCode(5);
+
+            pictureBox1.Refresh();
+            pictureBox2.Refresh();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            Captcha c = new Captcha();
+            code = c.GenCode(5);
         }
     }
 }
