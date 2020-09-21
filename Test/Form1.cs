@@ -31,6 +31,21 @@ namespace Test
                 bmp = new Bitmap(stream);
             }
             g.DrawImage(bmp, new PointF(0, 0));
+
+
+           
+            
+            for (int i = 0; i < bmp.Height; i++)
+            {
+                for (int j = 0; j < bmp.Width; j++)
+                {
+                    int grayValue = GetGrayValue(bmp.GetPixel(j, i));
+                    bmp.SetPixel(j, i, Color.FromArgb(grayValue, grayValue, grayValue));
+                }
+            }
+            var gra = pictureBox2.CreateGraphics();
+            gra.DrawImage(bmp, new PointF(0, 0));
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -39,13 +54,25 @@ namespace Test
             code = c.GenCode(5);
 
             pictureBox1.Refresh();
-            pictureBox2.Refresh();
+            //pictureBox2.Refresh();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             Captcha c = new Captcha();
             code = c.GenCode(5);
+
+            
+        }
+
+        /// <summary>
+        /// 計算灰階值
+        /// </summary>
+        /// <param name="pColor">color-像素色彩</param>
+        /// <returns></returns>
+        private int GetGrayValue(Color pColor)
+        {
+            return Convert.ToInt32(pColor.R * 0.299 + pColor.G * 0.587 + pColor.B * 0.114); // 灰階公式
         }
     }
 }

@@ -19,7 +19,7 @@ namespace Utility
                 {
                     Graphics g = Graphics.FromImage(bmp);
 
-                    g.Clear(Color.Gray);
+                    g.Clear(Color.Red);
 
                     int x = 0;
                     foreach(char a in code)
