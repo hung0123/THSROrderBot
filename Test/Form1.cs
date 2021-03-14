@@ -1,14 +1,20 @@
-﻿using System;
+﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using System.Windows.Forms;
 using Utility;
+
 
 namespace Test
 {
@@ -59,10 +65,38 @@ namespace Test
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Captcha c = new Captcha();
-            code = c.GenCode(5);
+            IWebDriver driver = new ChromeDriver();//必須把對應的chromedriver加進專案，並複製到輸出目錄;
+            try
+            {
+                //Captcha c = new Captcha();
+                //code = c.GenCode(5);
 
-            
+                //先跑一次首頁的原因
+                //https://stackoverflow.com/questions/41559510/selenium-chromedriver-add-cookie-invalid-domain-error/44857193
+                driver.Navigate().GoToUrl("https://irs.thsrc.com.tw/IMINT/?locale=tw");
+
+                driver.Manage().Cookies.AddCookie(new OpenQA.Selenium.Cookie("AcceptIRSCookiePolicyTime", System.DateTime.Now.ToString(), "irs.thsrc.com.tw", "/", null));
+
+                driver.Navigate().Refresh();
+
+                var captcha = driver.FindElement(By.Id("BookingS1Form_homeCaptcha_passCode"));
+
+             
+
+                var captchaUrl = captcha.GetAttribute("src");
+
+                //driver.SwitchTo().NewWindow(WindowType.Tab);
+                //driver.Navigate().GoToUrl(captchaUrl);
+
+                //Web web = new Web();
+                //web.GetData(captchaUrl);
+
+                //driver.Close();
+            }
+            finally
+            {
+               // driver.Dispose();
+            }
         }
 
         /// <summary>
@@ -73,6 +107,18 @@ namespace Test
         private int GetGrayValue(Color pColor)
         {
             return Convert.ToInt32(pColor.R * 0.299 + pColor.G * 0.587 + pColor.B * 0.114); // 灰階公式
+        }
+
+        private void pictureBox3_Paint(object sender, PaintEventArgs e)
+        {
+            try
+            {
+                
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
     }
 }
