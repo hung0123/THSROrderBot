@@ -9,26 +9,17 @@ namespace Utility
 {
     public class Web
     {
-        public byte[] GetData(string uri)
+        public Image GetCaptcha(string url)
         {
-            byte[] result = null;
             using (WebClient webClient = new WebClient())
             {
-                var a = webClient.DownloadString(uri);
-                Stream stream = webClient.OpenRead(uri);
-                Bitmap bitmap;
-                bitmap = new Bitmap(stream);
-
-                if (bitmap != null)
+                webClient.Headers.Add(HttpRequestHeader.AcceptEncoding, "gzip, deflate, br");
+                webClient.Headers.Add(HttpRequestHeader.Accept, "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
+                using (Stream stream = webClient.OpenRead(url))
                 {
-                    //bitmap.Save(filename, format);
+                    return Image.FromStream(stream);
                 }
-
-                stream.Flush();
-                stream.Close();
             }
-
-            return result;
         }
     }
 }

@@ -10,6 +10,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using System.Windows.Forms;
@@ -66,6 +67,7 @@ namespace Test
         private void Form1_Load(object sender, EventArgs e)
         {
             IWebDriver driver = new ChromeDriver();//必須把對應的chromedriver加進專案，並複製到輸出目錄;
+            
             try
             {
                 //Captcha c = new Captcha();
@@ -77,25 +79,36 @@ namespace Test
 
                 driver.Manage().Cookies.AddCookie(new OpenQA.Selenium.Cookie("AcceptIRSCookiePolicyTime", System.DateTime.Now.ToString(), "irs.thsrc.com.tw", "/", null));
 
-                driver.Navigate().Refresh();
+                for (int i = 0; i < 10; i++)
+                {
+                    driver.Navigate().Refresh();
+                    
+                    var captchaElement = driver.FindElement(By.Id("BookingS1Form_homeCaptcha_passCode"));
 
-                var captcha = driver.FindElement(By.Id("BookingS1Form_homeCaptcha_passCode"));
 
-             
 
-                var captchaUrl = captcha.GetAttribute("src");
+                    var captchaUrl = captchaElement.GetAttribute("src");
 
-                //driver.SwitchTo().NewWindow(WindowType.Tab);
-                //driver.Navigate().GoToUrl(captchaUrl);
+                    //driver.SwitchTo().NewWindow(WindowType.Tab);
+                    //driver.Navigate().GoToUrl(captchaUrl);
 
-                //Web web = new Web();
-                //web.GetData(captchaUrl);
+                    Web web = new Web();
+                    Image captcha = web.GetCaptcha(captchaUrl);
 
+                    captcha.Save(string.Format(@"C:\Program Files\Tesseract-OCR\jTessBoxEditor-2.3.1\jTessBoxEditor\Thsr\{0}.tiff", i));
+
+                    Thread.Sleep(1000);
+                }
+                //pictureBox3.Image = captcha;
                 //driver.Close();
+            }
+            catch(Exception ex)
+            {
+                driver.Dispose();
             }
             finally
             {
-               // driver.Dispose();
+               //driver.Dispose();
             }
         }
 
